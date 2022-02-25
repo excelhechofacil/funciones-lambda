@@ -35,3 +35,28 @@ Calendario = LAMBDA(NumMes, NumAno,
     )
 );
 /* Fin de la funcion */
+
+/* ---------------------- */
+
+/* Inicio de la funcion */
+/* La funcion NumerosSecuenciales crea una lista de numeros secuenciales con
+la cantidad de elementos repetidos por la cantidad de items especificados, ejemplo:
+Elementos: 3 e Items: 2 --> 1.1 - 1.2 - 2.1 - 2.2 - 3.1 - 3.2 */
+NumerosSecuenciales = LAMBDA(Elementos, Items,
+    LET(
+        nSecuencia, SECUENCIA(Elementos * Items),
+        MAP(
+            nSecuencia,
+            LAMBDA(eSecuencia,
+                VALOR(
+                    CONCAT(
+                        REDONDEAR.MAS(eSecuencia / Items, 0),
+                        ".",
+                        (RESIDUO((eSecuencia) - 1, Items) + 1)
+                    )
+                )
+            )
+        )
+    )
+);
+/* Fin de la funcion */
