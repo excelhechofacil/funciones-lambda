@@ -1,0 +1,37 @@
+/* Inicio de la funcion */
+/* Funcion LAMBDA que crea un calendario en excel con un numero de mes y un numero de ano */
+/* Argumentos --> NumMes: Numero de mes, NumAno: Numero de ano */
+/* Desborda una matriz de 7 filas por 7 columnas, incluye cabecera de dias de la semana */
+Calendario = LAMBDA(NumMes, NumAno,
+    LET(
+        aSecuencia, SECUENCIA(7, 7),
+        MAP(
+            aSecuencia,
+            LAMBDA(eSecuencia,
+                CAMBIAR(
+                    eSecuencia,
+                    1,
+                    "Lun",
+                    2,
+                    "Mar",
+                    3,
+                    "Mie",
+                    4,
+                    "Jue",
+                    5,
+                    "Vie",
+                    6,
+                    "Sab",
+                    7,
+                    "Dom",
+                    LET(
+                        eFecha, (eSecuencia - 7) + FECHA(NumAno, NumMes, 1) -
+                            DIASEM(FECHA(NumAno, NumMes, 1), 2),
+                        SI(MES(eFecha) = NumMes, DIA(eFecha), "")
+                    )
+                )
+            )
+        )
+    )
+);
+/* Fin de la funcion */
