@@ -60,3 +60,15 @@ NumerosSecuenciales = LAMBDA(Elementos, Items,
     )
 );
 /* Fin de la funcion */
+
+/* ---------------------- */
+
+/* Inicio de la funcion */
+/* Esta funcion filtra los registros de una tabla de datos que contengan en una de sus
+columnas valores con deimales diferentes de cero. Ejemplo: 123.123 (Si), 123.000 (No). */
+/* Argumentos --> RangoTabla: corresponde a toda la tabla de datos
+RangoValores: corresponde a la columna que contiene los valores con decimales. */
+FiltrarRegistrosConDecimales = LAMBDA(RangoTabla, RangoValores,
+    FILTRAR(RangoTabla, NO(RESIDUO(RangoValores, 1) = 0))
+);
+/* Fin de la funcion */
