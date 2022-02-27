@@ -72,3 +72,25 @@ FiltrarRegistrosConDecimales = LAMBDA(RangoTabla, RangoValores,
     FILTRAR(RangoTabla, NO(RESIDUO(RangoValores, 1) = 0))
 );
 /* Fin de la funcion */
+
+/* ---------------------- */
+
+/* Inicio de la funcion */
+/* La funcion UltimaFilaLlena calcula la posicion de la ultima fila llena de una lista
+de valores dispuesta en un rango de celdas. Omite celdas con vacios creados con =""
+Esta funcion es de llamado; invoca a una funcion recursiva de nombre CalcularUltimaFilaLlena */
+/* Argumentos --> RangoLista: Rango de celdas al que se le quiere evaluar la ultima fila llena */
+UltimaFilaLlena = LAMBDA(RangoLista, CalcularUltimaFilaLlena(RangoLista, 1, 0));
+/* ---------- */
+CalcularUltimaFilaLlena = LAMBDA(vRango, vIndice, vContador,
+    SI(
+        vIndice > FILAS(vRango),
+        vContador,
+        LET(
+            vContador, SI(INDICE(vRango, vIndice) <> "", vIndice, vContador),
+            vIndice, vIndice + 1,
+            CalcularUltimaFilaLlena(vRango, vIndice, vContador)
+        )
+    )
+);
+/* Fin de la funcion */
