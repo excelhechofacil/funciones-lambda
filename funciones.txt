@@ -111,3 +111,35 @@ LAMBDA(Contador, ElementoEdad,
 SI(Y(ElementoEdad >= ElementoEdadInicial, ElementoEdad <= ElementoEdadFinal),
 Contador + 1, Contador))))));
 /* Fin de la funcion */
+
+/* ---------------------- */
+
+/*Inicio de la funcion */
+/* La funcion ContarValoresUnicosSinCeros cuenta la cantidad de elementos numericos que no tienen
+valores repetidos dentro de un rango de datos.
+Esta Funcion llama a una funcion recursiva de nombre NucleoContarValoresUnicosSinCeros
+Argumentos --> RangoCeldas: rango de celdas con los valores numericos */
+ContarValoresUnicosSinCeros = LAMBDA(RangoCeldas,
+    NucleoContarValoresUnicosSinCeros(RangoCeldas, 0, 1)
+);
+/* ********** ********** */
+NucleoContarValoresUnicosSinCeros = LAMBDA(vRango, vConteo, vIndice,
+    SI(
+        vIndice > FILAS(vRango),
+        vConteo,
+        LET(
+            vConteo, SI(
+                INDICE(vRango, vIndice) = 0,
+                vConteo,
+                SI(
+                    CONTAR.SI(vRango, INDICE(vRango, vIndice)) > 1,
+                    vConteo,
+                    vConteo + 1
+                )
+            ),
+            vIndice, vIndice + 1,
+            NucleoContarValoresUnicosSinCeros(vRango, vConteo, vIndice)
+        )
+    )
+);
+/*Fin de la funcion */
