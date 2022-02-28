@@ -160,3 +160,25 @@ SustituirTextos = LAMBDA(TextoNoDepurado, ValorInicialBuscado, ValorInicialParaC
     )
 );
 /* Fin de la funcion */
+
+/* ---------------------- */
+
+/*Inicio de la funcion */
+/* La funcion InvertirTexto invierte los caracteres de una cadena de texto pasada en su unico argumento.
+Es una funcion que llama a otra funcion que actua recursivamente */
+InvertirTexto = LAMBDA(Texto, NucleoInvertir(Texto, "", LARGO(Texto)));
+
+/* ********** ********** */
+
+NucleoInvertir = LAMBDA(vOriginal, vContenedor, vIndice,
+    SI(
+        vIndice = 0,
+        vContenedor,
+        LET(
+            Contenedor, vContenedor & EXTRAE(vOriginal, vIndice, 1),
+            Indice, vIndice - 1,
+            NucleoInvertir(vOriginal, Contenedor, Indice)
+        )
+    )
+);
+/*Fin de la funcion */
