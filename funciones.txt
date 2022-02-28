@@ -94,3 +94,20 @@ CalcularUltimaFilaLlena = LAMBDA(vRango, vIndice, vContador,
     )
 );
 /* Fin de la funcion */
+
+/* ---------------------- */
+
+/* Inicio de la funcion */
+/* La funcion DistribucionEtaria calcula la distribucion de edades de un conjunto de fechas de nacimiento
+en un rango de edades de edad_inicial hasta edad_final */
+/* Argumentos --> RangoFechaNacimiento: rango de celdas que contiene las fechas de nacimiento
+RangoEdadInicial: rango de celdas que contiene valores numericos enteros con las edades inciales
+RangoEdadFinal: rango de celdas que contiene valores numeros enteros con las edades finales
+Ejemplo: desde 1 hasta 20, desde 21 hasta 40, desde 41 hasta 60, etc. */
+DistribucionEtaria = LAMBDA(RangoFechaNacimiento, RangoEdadInicial, RangoEdadFinal,
+MAP(RangoEdadInicial, RangoEdadFinal, LAMBDA(ElementoEdadInicial, ElementoEdadFinal,
+REDUCE(0, REDONDEAR((HOY() - RangoFechaNacimiento) / 365, 0),
+LAMBDA(Contador, ElementoEdad,
+SI(Y(ElementoEdad >= ElementoEdadInicial, ElementoEdad <= ElementoEdadFinal),
+Contador + 1, Contador))))));
+/* Fin de la funcion */
