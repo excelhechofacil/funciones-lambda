@@ -182,3 +182,18 @@ NucleoInvertir = LAMBDA(vOriginal, vContenedor, vIndice,
     )
 );
 /*Fin de la funcion */
+
+/* ---------------------- */
+
+/* Inicio de la funcion */
+/* La funcion EliminarCaracteres elimina los caracteres del segundo argumento, uno por uno
+del texto del primer argumento. Es una funcion recursiva */
+EliminarCaracteres = LAMBDA(Texto, TextoEliminar,
+    SI(TextoEliminar = "", Texto,
+        EliminarCaracteres(
+            SUSTITUIR(Texto, IZQUIERDA(TextoEliminar, 1), ""),
+            DERECHA(TextoEliminar, LARGO(TextoEliminar) - 1)
+        )
+    )
+);
+/* Fin de la funcion */
