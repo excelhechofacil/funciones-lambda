@@ -143,3 +143,20 @@ NucleoContarValoresUnicosSinCeros = LAMBDA(vRango, vConteo, vIndice,
     )
 );
 /*Fin de la funcion */
+
+/* ---------------------- */
+
+/* Inicio de la funcion */
+/* La funcion SustituirTextos sustituye de una cadena de texto un conjunto de valores dispuesto en un rango de celdas.
+Esta funcion toma una cadena de texto y la compara con un rango de celdas buscando coincidencias para reemplazar
+desde otro rango de celdas. Es una funcion recursiva */
+SustituirTextos = LAMBDA(TextoNoDepurado, ValorInicialBuscado, ValorInicialParaCambiar,
+    SI(ValorInicialBuscado = "", TextoNoDepurado,
+        LET(TexNoDep, SUSTITUIR(TextoNoDepurado, ValorInicialBuscado, ValorInicialParaCambiar),
+            ValIniBus, DESREF(ValorInicialBuscado, 1, 0),
+            ValIniParaCam, DESREF(ValorInicialParaCambiar, 1, 0),
+            SustituirTextos(TexNoDep, ValIniBus, ValIniParaCam)
+        )
+    )
+);
+/* Fin de la funcion */
